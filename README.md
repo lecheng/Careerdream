@@ -1,22 +1,22 @@
 # Careerdream
 Careerdream is a recruitment website in financial domain implemented by Python Django framework and deployed on Nginx web server in Ali Cloud. The users are divided into two parts, which are human resources and job hunters. The main functions of the website include:
 ```
-1. Resume management
-2. Changing Resume status
-3. Reseting Resume status
-4. Editing Company information
-5. Position management
-6. Posting and editing position
+1. Login and register
+2. Wechat login
+3. Reset and change password
+4. Position searching
+5. Uploading avatar
+6. Uploading resume
 7. Editing resume online
-8. Uploading avatar
-9. Uploading resume
-10. Setting default resume
-11. Deleting resume
-12. Delivering resume
-13. Leaving comments
-14. Checking application status
-15. Wechat login
-16. Position searching
-17. Login and register
-18. Reset and change password
+8. Setting default resume
+9. Deleting resume
+10. Delivering resume
+11. Checking application status
+12. Leaving comments
+13. Resume management
+14. Changing Resume status
+15. Reseting Resume status
+16. Editing Company information
+17. Position management
+18. Posting and editing position
 ```
