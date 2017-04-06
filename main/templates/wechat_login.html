@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>CareerDream职业梦登录注册</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" tydive="text/css" />
+<link rel="stylesheet" href="/static/css/login_in.css" tydive="text/css" />
+<script src="/static/js/jquery.min.js"></script>
+<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var redirct_uri = encodeURI("http://careerdream.org/api/wechat");
+  		var obj = new WxLogin({
+			id:"WechatQRCode", 
+			appid: "wx4aa5b65c3e1af883", 
+			scope: "snsapi_login", 
+			redirect_uri: redirct_uri
+		});
+	});
+</script>
+</head>
+<body>
+<!-- wechat_login -->
+<div class="login_in_box_bg"><img src="/static/images/caree_bg.png" /></div>
+<div class="qrcontainer">
+	<div id="WechatQRCode"></div>
+</div>
+<!-- wechat_login end -->
+</body>
+</html>

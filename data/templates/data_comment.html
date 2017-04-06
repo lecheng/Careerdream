@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>评论数据浏览</title>
+<!-- <base target="_blank" /> -->
+<meta name="description" content="content" />
+<meta name="keywords" content="content" />
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/reset.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/data_report.css" type="text/css" />
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/stupidtable.js"></script>
+<script>
+
+    $(function(){
+      var date_from_string = function(str){
+        var pattern = "^(\\d{4}).*?(\\d{1,2}).*?(\\d{1,2})";
+        // var pattern = "^(\\d{4}).*?(\\d{1,2}).*?(\\d{1,2}).*?(\\d{2}):(\\d{2})";
+        var re = new RegExp(pattern);
+        var DateParts = re.exec(str).slice(1);
+        var Year = DateParts[0];
+        var Month = DateParts[1];
+        var Day = DateParts[2];
+        // var Hour = DateParts[3];
+        // var Min = DateParts[4];
+        // return new Date(Year, Month, Day, Hour, Min)
+        return new Date(Year, Month, Day)
+      };
+
+      var mail_from_string = function(str){
+        var pattern = "^.*?@(.*?)$";
+        var re = new RegExp(pattern);
+        var DomainParts = re.exec(str).slice(1);
+        var Domain = DomainParts[0];
+        return Domain
+      };
+
+      var moveBlanks = function(a, b) {
+        if ( a < b ){
+          if (a == "")
+            return 1;
+          else
+            return -1;
+        }
+        if ( a > b ){
+          if (b == "")
+            return -1;
+          else
+            return 1;
+        }
+        return 0;
+      };
+     
+      var moveBlanksDesc = function(a, b) {
+        // Blanks are by definition the smallest value, so we don't have to
+        // worry about them here
+        if ( a < b )
+          return 1;
+        if ( a > b )
+          return -1;
+        return 0;
+      };
+      var table = $("table").stupidtable({
+        "date":function(a,b){
+          // Get these into date objects for comparison.
+          aDate = date_from_string(a);
+          bDate = date_from_string(b);
+          return aDate - bDate;
+        },
+        "mail":function(a,b){
+            aDomain = mail_from_string(a);
+            bDomain = mail_from_string(b);
+            return aDomain.localeCompare(bDomain);
+        },
+        "moveBlanks": moveBlanks,
+        "moveBlanksDesc": moveBlanksDesc
+      });
+    });
+
+</script>
+<script type="text/javascript">  
+function onSearch(){//js函数开始  
+    setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取  
+        var storeId = document.getElementById('store');//获取table的id标识  
+        var rowsLength = storeId.rows.length;//表格总共有多少行  
+        var inputname = document.getElementById('company_name');
+        var key = inputname.value;//获取输入框的值  
+  
+        var searchCol = 1;//要搜索的哪一列，这里是第一列，从0开始数起  
+  
+        for(var i=1;i<rowsLength;i++){//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）  
+            var searchText = storeId.rows[i].cells[searchCol].innerHTML;//取得table行，列的值  
+  
+            if(searchText.match(key)){//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，  
+                storeId.rows[i].style.display='';//显示行操作，                 
+            }else{  
+                storeId.rows[i].style.display='none';//隐藏行操作
+                storeId.rows[1].style.display=''; 
+            }  
+        }  
+    },200);//200为延时时间  
+}  
+</script> 
+<script type="text/javascript">  
+function onDearch(){//js函数开始  
+    setTimeout(function(){//因为是即时查询，需要用setTimeout进行延迟，让值写入到input内，再读取  
+        var storeId = document.getElementById('store');//获取table的id标识  
+        var rowsLength = storeId.rows.length;//表格总共有多少行  
+        var inputname = document.getElementById('datetime');
+        var key = inputname.value;//获取输入框的值  
+  
+        var searchCol = 3;//要搜索的哪一列，这里是第一列，从0开始数起  
+  
+        for(var i=1;i<rowsLength;i++){//按表的行数进行循环，本例第一行是标题，所以i=1，从第二行开始筛选（从0数起）  
+            var searchText = storeId.rows[i].cells[searchCol].innerHTML;//取得table行，列的值  
+  
+            if(searchText.match(key)){//用match函数进行筛选，如果input的值，即变量 key的值为空，返回的是ture，  
+                storeId.rows[i].style.display='';//显示行操作，  
+            }else{  
+                storeId.rows[i].style.display='none';//隐藏行操作  
+                storeId.rows[1].style.display=''; //
+            }  
+        }  
+    },200);//200为延时时间  
+}  
+</script> 
+<script type="text/javascript">
+// $(document).ready(function(){
+//   $('.table tr td .daochu').click(function(){
+//       var data_tim = $('.table tr td input#data_tim').val();
+//         $.post('/dataExport/',{data_tim:data_tim}).success(function(){
+
+//         });
+//     });
+// });
+</script>
+</head>
+<body style="background:#fff">
+<div class="data_tab">
+	<table class="table table-hover" id='store'>
+	    <caption>评论数据浏览</caption>
+	    <thead>
+            <tr style="border:0; background:none">
+              <td colspan="3" style="border:0;background:noe"> 
+              <form>
+              <input type="text" name = "日期" placeholder="2015-05-28"  id = "datetime" style="width:150px; height:30px;" />
+              <input type="button" value="确定"  style="width:100px; height:30px;" onclick="onDearch()" />
+            </form></td>
+            <td colspan="3" style="border:0;background:noe">
+            <form>
+              <input type="text" name  = "公司名称 "  placeholder="公司名称" id="company_name" style="width:150px; height:30px;" />
+              <input type="button" value="查询" style="width:100px; height:30px;" onclick="onSearch()" />
+            </form>
+            </td>
+            <td colspan="2" style="border:0;background:noe">
+            <form>
+           <!--  <input type="text" name="date" placeholder = "2015-06-01" id="data_tim"  style="width: 150px; height:30px;" /> -->
+            <input type="button" value="导出" style=" width:80px; height:35px;" class="daochu" />
+            </form>
+            </td>
+            <td  colspan="3" style="border:0;background:noe">
+            <input type="button" value="退后" onclick=history.go(-1) style=" width:80px;height:35px;" />
+            </td>
+            </tr>
+            <tr id="trblock">
+		        <th data-sort="int">公司id</th>
+		        <th data-sort="string">公司名</th>
+                      <th data-sort="mail">帐号</th>
+		        <th data-sort="date">日期</th>
+		        <th data-sort="int">投递响应评分</th>
+                      <th data-sort = "int">吐槽数</th>
+                      <th data-sort = "int">点赞/支持数</th>
+                      <th data-sort = "int">当日评论数</th>
+                      <th data-sort = "int">累计评论数</th>
+                      <th data-sort = "int">参与评论用户数</th>
+	        </tr>
+	   	</thead>
+	   	<tbody>
+	   		{% for item in Result %}
+	      	<tr>
+		        <td>{{item.company_id}}</td>
+                      <td>{{item.coname}}</td>
+                      <td>{{item.company_email}}</td>
+		        <td >{{item.datetime|date:"Y-m-d" }}</td>
+		        <td>{{item.score}}</td>
+                      <td>{{item.tucao_count}}</td>
+                      <td>{{item.support_count}}</td>
+                      <td>{{item.date_comment}}</td>
+                      <td>{{item.total_comment}}</td>
+                      <td>{{item.user_count}}</td>
+	        </tr>
+	        {% endfor %} 
+	    </tbody>
+	</table>
+</div>
+</body>	
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//liD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/liD/xhtml1-transitional.lid">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>职业梦在线统计</title>
+</head>
+<style>
+body{ margin:0; padding:0;}
+.tab_wrap{ margin:0 auto; padding:0; font-size:16px;}
+.tab_wrap h1{ text-align:center; padding:20px 0; margin:0; font-size:20px; color:#4f5d6e}
+.tab_wrap ul{ overflow:hidden; list-style-type:none; margin:0 auto; padding:0; border-bottom:1px solid #4f5d6e;}
+.tab_wrap ul.first_tab{ border-top:1px solid #4f5d6e;}
+.tab_wrap ul li{ float:left; width:100px; padding:5px 10px; text-align:center; border-right:1px solid #4f5d6e; margin:0; color:#4f5d6e;}
+.tab_wrap ul.first_tab li{ font-weight:bold; color:#7399c6;}
+</style>
+<body>
+<div class="tab_wrap">
+	<h1>职业梦访问量表单</h1>
+	<ul class="first_tab">
+    	<li>日期</li>
+        <li>时间</li>
+        <!-- <li>总注册</li> -->
+        <li>B端用户</li>
+        <li>C端用户</li>
+        <li>C端有投递贡献数</li>
+        <li>总投递数</li>
+        <li>总职位数</li>
+        <li>被动发布的职位</li>
+        <li>主动发布的职位 </li>
+        <li>下线职位数</li>
+    </ul>
+    {% for item in Result %}
+    <ul>       
+    	<li>{{ item.get_date }}</li>
+    	<li>{{ item.get_time }}</li>
+        <!-- <li>{{ item.total_reg }}</li> -->
+    	<li>{{ item.b_user_reg }}</li>
+        <li>{{ item.c_user_reg }}</li>
+        <li>{{ item.distinct_application_user }}</li>
+        <li>{{ item.total_application }}</li>
+        <li>{{ item.total_job }}</li>
+	    <li>{{ item.company_ip }}</li>
+        <li>{{ item.b_ip }}</li>
+         <li>{{ item.line_position}}</li>
+    </ul>
+    {% endfor %}
+    <h1>职业梦日留存率统计</h1>
+    <ul class="first_tab">
+        <li>日期</li>
+        <!-- <li>B端留存率</li> -->
+        <li>C端留存率</li>
+    </ul>
+    {% for item in Daily %}
+    <ul>       
+        <li>{{ item.get_date }}</li>
+        <!-- <li>{{ item.b_ratio }}%</li> -->
+        <li>{{ item.c_ratio }}%</li>
+    </ul>
+    {% endfor %}
+</div>
+</body>
+</html>

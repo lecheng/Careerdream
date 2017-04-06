@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html ng-app="com">
+<head>
+<title>CareerDream职业梦</title>
+<meta charset="UTF-8">
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.cookie.min.js"></script>
+</head>
+<body>
+	<div style="display:none">
+		<input id="name" value={{name}}>
+		<input id="avatar" value={{avatar}}>
+		<input id="appnum" value={{appnum}}>
+		<input id="login" value={{isLogin}}>
+		<input id="id" value={{id}}>
+		<input id="update" value={{update}}>
+		<input id="type" value={{type}}>
+	</div>
+</body>
+<script type="text/javascript">
+	var paras = "";
+	paras += document.getElementById("name").value;
+	paras += ";";
+	paras += document.getElementById("avatar").value;
+	paras += ";";
+	paras += document.getElementById("appnum").value;
+	paras += ";";
+	paras += document.getElementById("login").value;
+	paras += ";";
+	paras += document.getElementById("id").value;
+	paras += ";";
+	paras += document.getElementById("update").value;
+	paras += ";";
+	paras += document.getElementById("type").value;
+	location.href = "../../index.html?paras=" + paras;
+</script>
+</html>

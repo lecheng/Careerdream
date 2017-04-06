@@ -1,0 +1,24 @@
+/* CSS Document */
+@charset "utf-8";
+/* -------------------------------------------------
+ * reset css
+ * -------------------------------------------------
+*/
+body{ overflow: hidden; margin: 0; padding: 0;}
+.img_bg img{ position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -99; }
+.data_login{ width: 580px; padding: 20px; overflow: hidden; margin: 0 auto; margin-top: 130px; background: url(../images/emailwechat_bg.png) no-repeat;}
+.data_cont{ background: #fff; text-align: center; padding-bottom: 30px;}
+.data_cont span{ padding: 30px 0; display: block;}
+.data_cont span img{ display: block; margin:0 auto; padding: 0;}
+.data_cont input{ display: block; width: 340px; margin:0 auto; height: 30px; line-height: 28px; margin-top: 10px; font-size: 16px; color: #666;}
+.data_cont input.data_pass{ background:#fff url(../images/password_normal.png) no-repeat 10px; border: 1px solid #4f5d6e; height: 34px; padding: 0 10px 0 30px; width: 300px}
+.data_cont input.data_btn{ border: none; background: #4f5d6e; color: #fff; width: 345px; height: 38px;}
+.data_cont p{ margin:0 auto; padding: 0; overflow: hidden;}
+.data_cont p a{ font-size: 18px; display: block; width: 400px; height: 50px; background: #4f5d6e; color: #fff; margin:0 auto; padding: 0; line-height: 50px; margin-top: 30px;}
+.data_cont input.data_btn:hover, .data_cont p a:hover{ background: #7399c6;}
+.data_tab caption{ padding: 20px 0; font-size: 18px; color: #4f5d6e; font-weight: bold;}
+.data_tab table{ font-size: 14px; width:100%}
+.data_tab table tr{ border-bottom:1px solid #ccc; border-top:1px solid #ccc; width:100%;}
+.data_tab table tr:hover{ background:#eee;}
+.data_tab table th{ font-weight:bold; color:#7399c6;}
+.data_tab table th,.data_tab table td{ padding:5px 10px; border-right:1px solid #ccc;}

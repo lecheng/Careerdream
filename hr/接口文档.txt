@@ -1,0 +1,232 @@
+################################################
+
+接口名字: resume_manage
+接口功能: 简历管理列表
+
+url: /api/hr/resume_manage
+old url: /api/hr/hr_resume_manage/
+
+request:
+	method: post
+	formData:
+	{
+		"category": int(),
+		"type": int(),
+		"queryPage": int(页数)
+	}
+
+	参数说明:
+	category:
+		1, 收到的简历;
+		2, 未处理简历;
+		3, 不匹配简历;
+		4, 通知面试;
+	type:
+		1, 最新;
+		2, 评分最高;
+		3, 推荐简历;
+
+response:
+	json:{
+		'status': int(0/1),  # 0: 成功; 1: 失败
+		'msg': str(),
+		'data': [{
+			'totalResume': int(简历总数),
+			'totalPage': int(总页数),
+			'resumeList': [{
+				'appid': int(appid)
+				'jid': int(jid)
+				'new': bool()
+				'time': str(yyyy-mm-dd hh:mm:ss)
+				'com': str(company name)
+				'depart': str(department)
+				'sen': str(给公司的一段话)
+
+				'olresume': int(0/1)
+				'href': str(附件简历uri/用户id)
+				'resumeid': str(附件简历id)                   # 当为附件简历时才有此参数
+				'score': int(score)
+				'user': {
+					'name': str(用户名)
+					'sex': str(M/F)
+					'avatar': str(uri)
+					'email': str(email)
+					'phone': str(phone)
+					'city': str(city)
+
+					'job': str(最近一次工作职位)
+					'com': str(公司名)
+
+					'uni': str(最近一次教育经历学校)
+					'degree': str(学位J/B/M/P/R)
+				}
+			}],
+		}]
+	}
+
+################################################
+
+接口名字: resumeCategory
+接口功能: 简历管理里, 公司发布得所有职位,和收到得简历数
+
+url: /api/hr/resumeCategory/
+
+request:
+	method: post
+	formData:
+	{
+		'category': int
+		'online': int(0/1)  # 0: 显示全部职位, 1: 只显示在线的职位
+	}
+
+	参数说明:
+	category:
+		1, 收到的简历;
+		2, 未处理简历;
+		3, 不匹配简历
+
+response:
+	json:{
+		'status': int,
+		'msg': str,
+		'data': [{
+			'position': str,
+			'department': str,
+			'num': int,
+			'jobid': int
+		}]
+	}
+
+	参数说明:
+	status:
+		0: 成功
+		1: 失败
+	msg: 失败信息
+	data: [{
+		jobid: 职位id
+		position: 职位
+		department: 部门
+		num: 收到的简历数
+		}]
+
+################################################
+
+接口名字: hr_read_resume
+接口功能: 标记简历状态为已读
+
+url: /api/hr/hr_read_resume/
+
+request:
+	method: post
+	formData:
+	{
+		'list': [int(appid)]
+	}
+
+response: str(0)  # 0为成功, 出现异常则返回错误信息
+
+################################################
+
+接口名字: hr_forward_resume
+接口功能: 标记简历状态为转发
+
+url: /api/hr/hr_read_resume/
+
+request:
+	method: post
+	formData:
+	{
+		'id': [int(appid)]
+		'email': str(email)
+		'title': str(title)
+		'content': str(content)
+	}
+
+response: str(0)  # 0为成功, 出现异常则返回错误信息
+
+################################################
+
+接口名字: improper
+接口功能:标记不匹配 
+
+url:/api/hr/improper/
+
+requset:
+	method:post
+	fromData:
+	{
+	'appid':int
+	}
+
+	参数说明:
+	appid:
+		1.未处理简历
+		2.标记不匹配
+
+response:
+	app:
+		companyid:int
+		userid:int
+		status':str
+	
+
+	参数说明:
+		status:
+			RJ: 不匹配
+			SU:未处理 
+		rejected:
+			1:标记不匹配
+		error: 失败信息
+	
+	results:{
+		apps:{
+			'username': 名字
+			'school': 学校
+			'major': 主修科目
+			'avatar': 头像路径,
+			'gender': 性别,
+			'degree': 学位,
+			'gradyear': 毕业哪年,
+		}
+		jobs:{
+			'idss': appid,
+			'department': 部门
+			'position': 职位,
+			'jobid': jobid,
+			'status': 简历状态,
+		}
+
+	}
+
+################################################
+
+接口名字: manageImproper
+接口功能:批量标记不匹配(同一份简历，同一个公司，投递的其他的职位和部门 )
+
+url:/api/hr/manageImproper/
+
+requset:
+	method:post
+	fromData:
+	{
+	'appids':int
+	}
+
+	参数说明:
+	appid:
+		1.未处理简历
+		2.标记不匹配
+
+response:
+	参数说明:
+		status:
+			RJ: 不匹配
+			SU:未处理 
+		rejected:
+			1:标记不匹配
+		error: 失败信息
+	results:{
+		[
+		'jobreject':批量标记不匹配(appid)
+		]
+	}

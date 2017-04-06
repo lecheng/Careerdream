@@ -1,0 +1,21 @@
+<html>
+<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		/* redirct_uri need change to new domain */
+    // var height = $(window).height();
+    // var top = (height - 400) / 2;
+    // $('#WechatQRCode').css('margin-top', top.toString()+"px")
+		var redirct_uri = encodeURI("http://www.careerdream.org/wechat");
+  	var obj = new WxLogin({
+                            id:"WechatQRCode", 
+                            appid: "wx4aa5b65c3e1af883", 
+                            scope: "snsapi_login", 
+                            redirect_uri: redirct_uri
+                          });
+	});
+</script>
+
+<div id="WechatQRCode"></div>
+</html>

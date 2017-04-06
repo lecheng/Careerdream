@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//liD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/liD/xhtml1-transitional.lid">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>职业梦在线统计C端</title>
+<link rel="stylesheet" href="/static/css/data/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/data/reset.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/data/data_report.css" type="text/css" />
+</head>
+<body>
+<div class="data_tab">
+    <!--<div class="col-md-6">-->
+        <table class="table table-hover">
+            <caption>职业梦C端活跃表单</caption>
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>日活跃度</th>
+                    <th>周活跃度</th>
+                    <th>月活跃度</th>
+                    <th>周流失率</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                    {% for item in alldata %}
+                    <tr>
+                    <td>{{item.datetime}}</td>
+                    <td>{{item.day_active}}</td>
+                    <td>{{item.week_active}}</td>
+                    <td>{{item.month_active}}</td>
+                    <td>{{item.week_inactive}}</td>
+                    {% endfor %}
+
+            </tbody>
+        </table>
+    <!--</div>-->
+    <!--<div class="col-md-6">-->
+        <!--<table class="table table-hover">-->
+            <!--<caption>职业梦C端周流失率统计</caption>-->
+            <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>日期</th>-->
+                    <!--<th>流失率</th>-->
+                <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+                <!--<tr>-->
+                    <!--<td>1</td>-->
+                    <!--<td>2</td>-->
+                <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+</div>
+<!--<div class="data_tab">-->
+    <!--<table class="table table-hover">-->
+        <!--<caption>职业梦C端周流失率统计</caption>-->
+        <!--<thead>-->
+            <!--<tr>-->
+                <!--<th>日期</th>-->
+                <!--<th>流失率</th>-->
+            <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td>1</td>-->
+                <!--<td>2</td>-->
+            <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
+
+    <!--<h1>职业梦C端周流失率统计</h1>-->
+    <!--<ul class="first_tab">-->
+        <!--<li>日期</li>-->
+        <!--&lt;!&ndash; <li>B端留存率</li> &ndash;&gt;-->
+        <!--<li>C端周流失率</li>-->
+    <!--</ul>-->
+    <!---->
+    <!--<ul>       -->
+        <!--<li></li>-->
+        <!--&lt;!&ndash; <li>{{ item.b_ratio }}%</li> &ndash;&gt;-->
+        <!--<li></li>-->
+    <!--</ul>-->
+    <!---->
+<!--</div>-->
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>职业梦_新进主动B端</title>
+<!-- <base target="_blank" /> -->
+<meta name="description" content="content" />
+<meta name="keywords" content="content" />
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/reset.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/data_report.css" type="text/css" />
+<script src="/static/js/v2/jquery.min.js"></script>
+<script src="/static/js/stupidtable.js"></script>
+<script>
+
+    $(function(){
+      var date_from_string = function(str){
+        var pattern = "^(\\d{4}).*?(\\d{1,2}).*?(\\d{1,2}).*?(\\d{2}):(\\d{2})";
+        var re = new RegExp(pattern);
+        var DateParts = re.exec(str).slice(1);
+        var Year = DateParts[0];
+        var Month = DateParts[1];
+        var Day = DateParts[2];
+        var Hour = DateParts[3];
+        var Min = DateParts[4];
+        return new Date(Year, Month, Day, Hour, Min)
+      };
+
+      var mail_from_string = function(str){
+        var pattern = "^.*?@(.*?)$";
+        var re = new RegExp(pattern);
+        var DomainParts = re.exec(str).slice(1);
+        var Domain = DomainParts[0];
+        return Domain
+      };
+
+      var moveBlanks = function(a, b) {
+        if ( a < b ){
+          if (a == "")
+            return 1;
+          else
+            return -1;
+        }
+        if ( a > b ){
+          if (b == "")
+            return -1;
+          else
+            return 1;
+        }
+        return 0;
+      };
+      var moveBlanksDesc = function(a, b) {
+        // Blanks are by definition the smallest value, so we don't have to
+        // worry about them here
+        if ( a < b )
+          return 1;
+        if ( a > b )
+          return -1;
+        return 0;
+      };
+      var table = $("table").stupidtable({
+        "date":function(a,b){
+          // Get these into date objects for comparison.
+          aDate = date_from_string(a);
+          bDate = date_from_string(b);
+          return aDate - bDate;
+        },
+        "mail":function(a,b){
+            aDomain = mail_from_string(a);
+            bDomain = mail_from_string(b);
+            return aDomain.localeCompare(bDomain);
+        },
+        "moveBlanks": moveBlanks,
+        "moveBlanksDesc": moveBlanksDesc
+      });
+    });
+
+</script>
+</head>
+<body style="background:#fff">
+<div class="data_tab">
+	<table class="table table-hover">
+	    <caption>职业梦新进主动B端</caption>
+	    <thead>
+	        <tr>
+		        <th data-sort="int">公司id</th>
+		        <th data-sort="mail">帐号</th>
+		        <th data-sort="string">公司名</th>
+		        <th data-sort="date">帐号创建时间</th>
+		        <th data-sort="date">帐号最近一次登录时间</th>
+		        <th data-sort="int">已发布职位数量</th>
+	        </tr>
+	   	</thead>
+	   	<tbody>
+	   		{% for item in Result %}
+	      	<tr>
+		        <td>{{item.id}}</td>
+		        <td>{{item.email}}</td>
+		        <td>{{item.coname}}</td>
+		        <td>{{item.create_time}}</td>
+		        <td>{{item.last_login_date}}</td>
+		        <td>{{item.jobnum}}</td>
+	        </tr>
+	        {% endfor %}
+	    </tbody>
+	</table>
+</div>
+</body>	
+</html>

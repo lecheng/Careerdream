@@ -1,0 +1,409 @@
+################################################
+
+接口名: init_online_resume
+功能: 初始化在线简历
+
+url: /api/hunter/init_online_resume
+old url: /api/hunter/initresumeinfo/
+
+request:
+	method: post
+	formData:
+	{
+		'name': str(),
+		'sex': str(M/F),
+		'phone': str(),
+		'address': str(),
+		'edu': [{
+			'university': str(),
+			'major': str(),
+			'degree': str(J/B/M/P/R),
+			'startTime': str(yyyy-mm-dd),
+			'endTime': str(yyyy-mm-dd),
+		}]
+		'exp': [{
+			'company': str(),
+			'job': str(),
+			'startTime': str(yyyy-mm-dd),
+			'endTime': str(yyyy-mm-dd), 时间如果填空则不请求这个key
+		}]
+	}
+
+response:
+	{
+		'status': int(0/1),  # 0成功; 1失败
+		'msg': str(),        # 返回信息
+	}
+
+################################################
+
+接口名: edit_online_resume
+功能: 编辑在线简历
+
+url: /api/hunter/edit_online_resume
+old url: /api/hunter/editresumeinfo/
+
+request:
+	method: post
+	formData:
+	{
+		"option": str(1-6) # 1,基本信息; 2,教育经历; 3,工作经历; 4,社工经历; 5,其他信息; 6,兴趣爱好;
+		if option == '1':
+			"data": {
+				"address": str(地址),
+				"email": str(email),
+				"phone": str(phone),
+				"birth": str(yyyy-mm-dd),
+				"name": str(username),
+				"sex": str(M/F),
+			},
+		if option == '2':
+			"data": [
+				{
+					"course": str(主修科目),
+					"id": str(-1 or > 0),    # -1,新加; >0,编辑现有
+					"university": str(university),
+					"degree": str(J/B/M/P/R),
+					"gpaScore": float(),
+					"endTime": str(yyyy-mm-dd),
+					"gpaTotal": float(),
+					"major": str(major),
+					"startTime": str(yyyy-mm-dd),
+					"delete": str(0/1)    # 1,不删除; 0,删除
+				}
+			],
+		if option == '3':
+			"data": [
+				{
+					"id": str(-1 or > 0),
+					"company": str(company name),
+					"depart": str(department),
+					"func": str(职责),
+					"endTime": str(yyyy-mm-dd),
+					"job": str(职位),
+					"startTime": str(yyyy-mm-dd),
+					"delete": str(0/1)    # 1,不删除; 0,删除
+				}
+			],
+		if option == '4':
+			data": [
+				{
+					"id": str(-1 or > 0),
+					"assn": str(company name),
+					"func": str(职责),
+					"location": str(地点),
+					"endTime": str(yyyy-mm-dd),
+					"post": "大神",
+					"startTime": str(yyyy-mm-dd),
+					"delete": str(0/1)
+				}
+			],
+		if option == '5':
+			"data": {
+				"lang": [
+					{
+						"level": str(M/F/J),     # M: 母语; F:流利; J: 一般
+						"id": str(-1 or > 0),
+						"type": str(语言类型),
+						"score": str(score),
+						"class": str(class),
+						"delete": str(0/1)
+					}
+				],
+				"cert": [
+					{
+						"id": str(-1 or > 0),
+						"type": str(证书类型),
+						"delete": str(0/1)
+					}
+				],
+				"softwareSkill": [
+					{
+						"level": str(P/S/J),    # P: 精通; F:熟练; J: 一般
+						"id": str(-1 or > 0),
+						"type": str(software类型),
+						"delete": str(0/1)
+					}
+				]
+			}
+		if option == '6':
+			"data": {
+				"content": str()
+			},
+	}
+
+response:
+	{
+		'status': int(0/1),  # 0成功; 1失败
+		'msg': str(),        # 返回信息
+		'integrity': int(完整度),
+	}
+
+################################################
+
+接口名: get_user_info
+功能: 获取用户信息
+
+url: /api/hunter/get_user_info
+old url: /api/hunter/getresumeinfo/
+
+request:
+	method: post
+	formData:
+	{
+		vid: int() # 生成在线简历时需要
+	}
+
+response:
+	{
+		'status': int(0/1),                    # 0成功; 1失败
+		'msg': str(),                          # 返回信息
+		'data': {
+			'integrity': int(),                # 完整度
+			'score': int(),                    # 在线简历评分
+			'like': str(),                     # 兴趣爱好
+			'userid': str(),
+			'name': str(),
+			'sex': str(M/F),
+			'phone': str(),
+			'email': str(),
+			'avatar': str(),                    # 头像
+			'birth': str(yyyy-mm-dd),
+			'address': str(),
+			'defaultResume': int(),             # -1: 在线简历; 0: 没有简历; >1: 附件简历
+			'resume': [{
+				'name': str(),
+				'id': str()
+			}],
+			'edu': [{
+				'id': str(),
+				'university': str(),
+				'major': str(),
+				'degree': str(J/B/M/P/R),
+				'course': str(),
+				'gpaScore': str(),
+				'gpaTotal': str(),
+				'startTime': str(yyyy-mm-dd),
+				'endTime': str(yyyy-mm-dd)
+			}],
+			'exp': [{
+				'id': str(),
+				'company': str(),
+				'job': str(),
+				'depart': str(),
+				'func': str(),
+				'startTime': str(yyyy-mm-dd),
+				'endTime': str(yyyy-mm-dd)
+			}],
+			'social': [{
+				'id': str(),
+				'assn': str(),
+				'post': str(),
+				'location': str(),
+				'func': str(),
+				'startTime': str(yyyy-mm-dd),
+				'endTime': str(yyyy-mm-dd)
+			}],
+			'lang': [{
+				'id': str(),
+				'type': str(),
+				'level': str(M/F/J),
+				'class': str(),
+				'score': str(),
+			}],
+			'cert': [{
+				'id': str(),
+				'type': str(),
+			}],
+			'softwareSkill': [{
+				'id': str(),
+				'type': str(),
+				'level': str(P/S/J)
+			}],
+		}
+	}
+
+################################################
+
+接口名: upload_avatar
+功能: 上传头像
+
+url: /api/hunter/upload_avatar
+old url: /api/upload_avatar/
+
+request:
+	method: post
+	formData:
+	{
+		'file': file()
+	}
+
+response:
+	{
+		'status': int(0/1),                    # 0成功; 1失败
+		'msg': str(),                          # 返回信息
+		'filename': str(),
+		'width': str(),
+		'height': str()
+	}
+
+################################################
+
+接口名: upload_resume
+功能: 上传附件简历
+
+url: /api/hunter/upload_resume
+old url: /api/hunter/uploadresume/
+
+request:
+	method: post
+	formData:
+	{
+		'file': file()
+	}
+
+ps:
+	如果上传成功则直接跳转到'/resumeshow.html',失败时才会有response
+
+response:
+	{
+		'status': int(0/1),                    # 0成功; 1失败
+		'msg': str(),                          # 返回信息
+	}
+
+################################################
+
+接口名: change_default_resume1
+功能: 修改默认简历
+
+url: /api/hunter/change_default_resume1
+old url: /api/hunter/change_default_resume/
+
+ps: 测试没问题之后会把后面的1去掉
+
+request:
+	method: get
+	formData:
+	{
+		'id': int() # 简历id
+	}
+
+response:
+	{
+		'status': int(0/1),                    # 0成功; 1失败
+		'msg': str(),                          # 返回信息
+	}
+
+################################################
+
+接口名: delete_resume1
+功能: 删除附件简历
+
+url: /api/hunter/delete_resume1
+old url: /api/hunter/delete_resume/
+
+ps: 测试没问题之后会把后面的1去掉
+
+request:
+	method: get
+	formData:
+	{
+		'id': int() # 简历id
+	}
+
+response:
+	{
+		'status': int(0/1),                    # 0成功; 1失败
+		'msg': str(),                          # 返回信息
+	}
+
+################################################
+
+接口名: deliver_resume1
+功能: 投递简历
+
+url: /api/hunter/deliver_resume1
+old url: /api/hunter/deliver_resume/
+
+ps: 测试没问题之后会把后面的1去掉
+
+request:
+	method: post
+	formData:
+	{
+		'jid': int() # 工作id
+		'rid': int() # 简历id
+		'mah': bool() # 是否与职位要求匹配
+	}
+
+response:
+	{
+		'status': int(0/1),                    # 0成功; 1失败
+		'msg': str(),                          # 返回信息
+		'left': int(),                         # 剩余投递次数
+	}
+
+################################################
+
+接口名: leave_word1
+功能: 给公司留一段话
+
+url: /api/hunter/leave_word1
+old url: /api/hunter/leave_word/
+
+ps: 测试没问题之后会把后面的1去掉
+
+request:
+	method: post
+	formData:
+	{
+		'option': int(0/1) # 0: 取msg; 1: 保存msg
+	}
+
+response:
+	{
+		# option=0时,status=1表示用户有默认的msg发送,status=0时,前端需要随机生成留言内容
+		# option=1时,status=0表示信息保存成功
+		# status=2表示信息保存失败
+		'status': int(0/1/2),
+		'msg': str(),                          # 信息内容
+	}
+
+################################################
+
+接口名: my_deliver
+功能: 我的投递列表
+
+url: /api/hunter/my_deliver
+old url: /api/hunter/delivery_list/
+
+request:
+	method: post
+	formData:
+	{	# new: 所有投递
+		# read: 简历被读
+		# forward: 简历被转发
+		# mismatch: 被标记不合适
+		'type': str(new/read/forward/mismatch)
+		'queryPage': int(当前页)
+	}
+
+response:
+	{
+		'status': int(0/1),                    # 0成功; 1失败
+		'msg': str(),                          # 返回信息
+		'data': {
+			'totalPage': int(),                # 总页数
+			'list': [{
+				'cid': str(公司id)
+				'jid': str(job id)
+				'com': str(company name)
+				'depart': str(部门)
+				'job': str(职位)
+				'resume': str(简历名)
+				'jobTime': str(发布时间)
+				'updateTime': str(更新时间)
+				'progress': [0, 0, 0, 0, 0, 0]   # 状态列表[投递成功, 简历已读, 转发, 拒绝, 下线, 面试通知],0表示状态为假,1为真
+			}]
+		}
+	}

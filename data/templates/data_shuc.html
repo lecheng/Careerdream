@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>职业梦_用户职位数据C端</title>
+<!-- <base target="_blank" /> -->
+<meta name="description" content="content" />
+<meta name="keywords" content="content" />
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/reset.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/data_report.css" type="text/css" />
+</head>
+<body style="background:#fff">
+<div class="data_tab">
+	<table class="table table-hover">
+	    <caption>职业梦用户职位数据</caption>
+	    <thead>
+	        <tr>
+	        	<th>日期</th>
+		<th>已读</th>
+		<th>转发</th>
+		<th>标记不匹配</th>
+		<th>职位到期不匹配</th>
+		<th>学历/工作经验不符不匹配</th>
+		<th>每人平均投递数</th>
+		<th>每日B端刷新次数</th>
+		        
+	        </tr>
+	   	</thead>
+	   {% for item in Result %}
+	<tbody>	
+	      <tr>
+	      	<td>{{ item.datetime }}</td>
+		<td>{{ item.c_read}}</td>
+		<td>{{ item.c_forward}}</td>
+		<td>{{item.c_mark}}</td>
+		<td>{{ item.c_expire}}</td>
+		<td>{{ item.c_works}}</td>
+		<td>{{item.average_application}}</td>
+		<td>{{ item.daily_refresh }}</td> 
+		        
+	        </tr>
+	</tbody>
+	       {% endfor %}
+	   
+	</table>
+</div>
+</body>	
+</html>

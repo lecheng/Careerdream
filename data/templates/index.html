@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>职业梦后台数据系统</title>
+	<script src="/static/datareporte/js/jquery.min.js"></script>
+	<script src="/static/datareporte/js/jscharts.js"></script>
+	<script src="/static/datareporte/js/index.js"></script>
+	<link rel="stylesheet" href="/static/datareporte/css/index.css" type="text/css">
+</head>
+<body>
+	<header>
+		
+	</header>
+	<div class="cont">
+		<ul class = "bar">
+			<li id="reg" data="/dataReg">注册量</li>
+			<li id="feed" data="/dataFeedback">B端反馈情况</li>
+			<li id="bac" data="/dataBactive">B端活跃情况</li>
+			<li id="cac" data="/dataCactive">C端活跃情况</li>
+			<li id="res" data="/dataResume">简历投递情况</li>
+			<li id="pos" data="/dataPosition">职位信息</li>
+		</ul>
+		<div class = "draw">
+			<div class="title">
+				<ul class="reg-data">
+					<li type="c_user_reg">C端日注册量</li>
+					<li type="c_reg_total">C端总注册量</li>
+					<li type="b_total">B端日注册总量</li>
+					<li type="b_active_reg">B端日主动注册量</li>
+					<li type="b_passive_reg">B端日被动注册量</li>
+					<li type="b_active_total">B端主动注册总量</li>
+					<li type="b_passive_total">B端被动注册总量</li>
+					<li type="b_reg_total">B端注册总量</li>
+					<li type ="b_active_singin">被动注册主动登录</li>
+					<li type="b_account">账户数</li>
+				</ul>
+				<ul class="feed-data">
+					<li type="date_aver">B端平均反馈时间</li>
+					<li type="c_read">已读数据</li>
+					<li type="c_forward">转发数据</li>
+					<li type="c_mark">标记不匹配</li>
+					<li type="c_expire">职位到期不匹配</li>
+					<li type="c_works">工作/经历不匹配</li>
+					<li type="match_total">不匹配总数</li>
+					<li type="daily_refresh">刷新职位</li>
+					<li type="b_down">B端下载</li>
+					<li type="position_due">职位到期数</li>
+					<!-- <li type="position">当日职位到期</li> -->
+					<li type="average_application">每个人平均投递数</li>
+					
+				</ul>
+				<ul class="bac-data">
+					<li type="user_active">活跃用户数</li>
+					<li type="user_loss">流失用户数</li>
+					<li type="loss_rate">流失率</li>
+					<li type="return_rate">回流数</li>
+					<li type="not_active">不活跃用户数</li>
+					<li type="not_active_rate">不活跃用户比率</li>
+				</ul>
+				<ul class="cac-data">
+					<li type="user_active">活跃用户数</li>
+					<li type="user_loss">流失用户数</li>
+					<li type="loss_rate">流失率</li>
+					<li type="return_rate">回流数</li>
+					<li type="not_active">不活跃用户数</li>
+					<li type="not_active_rate">不活跃用户比率</li>
+				</ul>
+				<ul class="res-data">
+					<li type="pos_aver">职位平均被投递</li>
+					<li type="resume_total">简历投递总量</li>
+					<li type="new_delivery">新增投递量</li>
+					<li type="c_delivery">C端平均投递量</li>
+				</ul>
+				<ul class="pos-data">
+					<li type="position_total">职位总量</li>
+					<li type="add_position">B端主动增加职位数量</li>
+					<li type="aver_position">B端平均发布职位数量</li>
+					<li type="loss_add">B端被动增加职位数量</li>
+					<li type="loss_aver">B端被动平均发布职位数量</li>
+				</ul>
+			</div>
+			<ul class="layout">
+				<li for="pic" style="background: #519BCE;color:#fff">折线图</li>
+				<li for="table">表格</li>
+			</ul>
+			<ul class="menu">
+				<li num="7">7天</li>
+				<li num="15">15天</li>
+				<li num="30">30天</li>
+			</ul>
+			<div id="chartcontainer">暂时没有数据...</div>
+			<div id="table" style="display:none;">
+				<table>
+				</table>
+			</div> 
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+/* CSS Document */
+@charset "utf-8";
+/* -------------------------------------------------
+ * reset css
+ * -------------------------------------------------
+*/
+html,body,ul,li,dl,dt,dd{
+	margin:0;padding:0;border:0;list-style: none;
+}
+a{
+	text-decoration: none;
+}
+header{
+	height:50px;line-height: 50px;width:1240px;margin:0 auto;
+}
+.cont{
+	width:1240px;margin:0 auto;overflow: hidden;position: relative;
+}
+.bar{
+	float:left;overflow: hidden;margin-top:130px;width:8%;
+}
+.bar li{
+	font-weight: bold;line-height: 40px;cursor: pointer;color:#666;border-bottom:1px solid #ccc;
+}
+.bar li:hover{
+	color:#519BCE!important;
+}
+.draw {
+	float: left;overflow: hidden;width:92%;
+}
+.draw .title ul{
+	overflow: hidden;margin-left:20px;display: none;
+}
+.draw .title ul:first-child{
+	display: block;
+}
+.draw .title li {
+	float:left;padding:6px;color:#666;cursor: pointer;
+}
+.draw .title li:hover{
+	color:#519BCE!important;
+}
+.draw #chartcontainer{
+	margin-left: 30px;
+	margin-top: 50px;
+	text-align: center;
+	line-height: 200px;
+}
+.draw .menu{
+	float:right;border:1px solid #ddd;border-bottom: none;border-right: none;margin-top: 30px;margin-right: 100px;
+}
+.draw .menu li{
+	float:left;padding:10px 15px;cursor: pointer;border:1px solid #ddd;border-top:none;border-left: none;
+}
+.draw .menu li:hover{
+	background: #519BCE!important;
+	color:#fff!important;
+}
+.draw .layout{
+	float:left;border:1px solid #ddd;border-bottom: none;border-right: none;margin-top: 30px;margin-left: 100px;
+}
+.draw .layout li{
+	float:left;padding:10px 15px;cursor: pointer;border:1px solid #ddd;border-top:none;border-left: none;
+}
+.draw .layout li:hover{
+	background: #519BCE!important;
+	color:#fff!important;
+}
+#table table{
+	width:95%;text-align: center;
+	border-collapse: collapse;
+	margin-left: 30px;padding-top: 20px;
+}
+#table table td{
+	border:1px solid #ccc;padding:8px 0;
+}
